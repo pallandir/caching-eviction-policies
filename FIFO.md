@@ -4,6 +4,28 @@ This caching eviction policies follows a simple rule, when the cache is full the
 
 Here is an implementation of a FIFO cache in python: [fifo_cache](code/fifo_cache.py)
 
+### How does it works
+
+let's consider this sequence of requests
+
+```sh
+1,2,3,4,4,4,4,4,1,4,4,4,4,4,5
+```
+
+Assuming a FIFO cache with a capacity of 3, the state of the cache evolves as follows:
+
+1.  Initial State: The cache is empty: [].
+2.  Request 1: Add '1' to the cache: [1].
+3.  Request 2: Add '2' to the cache: [1, 2].
+4.  Request 3: Add '3' to the cache: [1, 2, 3].
+5.  Request 4: Cache is full; evict '1' (the oldest) and add '4': [2, 3, 4].
+6.  Subsequent Requests for '4': '4' is already in the cache; no changes: [2, 3, 4].
+7.  Request 1: Cache is full; evict '2' and add '1': [3, 4, 1].
+8.  Subsequent Requests for '4': '4' is already in the cache; no changes: [3, 4, 1].
+9.  Request 5: Cache is full; evict '3' and add '5': [4, 1, 5].
+
+### Implementation
+
 ```python
 class FIFOCache:
     """
