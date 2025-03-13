@@ -23,6 +23,20 @@ Caches are small memory units designed to store the most recently accessed data 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- SUMMARY -->
+
+## Summary
+
+| Strategy                    | Eviction Policy                       | Best Use Case                                    |
+| --------------------------- | ------------------------------------- | ------------------------------------------------ |
+| First-In/First-Out (FIFO)   | Removes the oldest entry first        | When newer data is more relevant than older data |
+| Last-In/First-Out (LIFO)    | Removes the most recent entry first   | When older data is more relevant than newer data |
+| Least Recently Used (LRU)   | Removes the least recently used entry | When frequently accessed data should be kept     |
+| Most Recently Used (MRU)    | Removes the most recently used entry  | When older data is more valuable than new data   |
+| Least Frequently Used (LFU) | Removes the least accessed entry      | When popular data should be prioritized          |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ROADMAP -->
 
 ## Roadmap
