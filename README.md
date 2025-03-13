@@ -37,6 +37,18 @@ Caches are small memory units designed to store the most recently accessed data 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- CONTENT -->
+
+## Content
+
+1.  [FIFO caching](FIFO.md)
+2.  [LRU caching]()
+3.  [LFU caching]()
+4.  [LIFO caching]()
+5.  [MRU caching]()
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -45,7 +57,7 @@ Caches are small memory units designed to store the most recently accessed data 
 - [ ] Add LRU cache
 - [ ] Add LFU cache
 - [ ] Add MRU cache
-- [ ] Add FIFO cache
+- [x] Add FIFO cache
 - [ ] Add LIFO cache
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

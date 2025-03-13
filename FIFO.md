@@ -6,7 +6,7 @@ Here is an implementation of a FIFO cache in python: [fifo_cache](code/fifo_cach
 
 ### How does it works
 
-let's consider this sequence of requests
+let's consider this sequence of requests:
 
 ```sh
 1,2,3,4,4,4,4,4,1,4,4,4,4,4,5
