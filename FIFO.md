@@ -1,6 +1,6 @@
 ## FIFO cache
 
-This caching eviction policies follows a simple rule, when the cache is full the first item added is the first item to be removed.
+A FIFO (First-In, First-Out) cache follows a simple rule: when the cache reaches its maximum capacity, the oldest item (the first one added) is the first to be removed to make room for new entries. This eviction policy does not consider how frequently or recently an item was accessed, only the order in which it was inserted.
 
 Here is an implementation of a FIFO cache in python: [fifo_cache](code/fifo_cache.py)
 
