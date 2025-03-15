@@ -6,46 +6,60 @@ class Node:
         self.prev = None
 
 
+class DLinkedList:
+    def __init__(self):
+        self.head = Node()
+        self.tail = Node()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def add_front(self, node):
+        node.prev = self.head
+        node.next = self.head.next
+        self.head.next.prev = node
+        self.head.next = node
+
+    def remove_node(self, node):
+        prev_neighbour = node.prev
+        next_neighbour = node.next
+        prev_neighbour.next = next_neighbour
+        next_neighbour.prev = prev_neighbour
+
+    def remove_tail(self):
+        prev_node = self.tail.prev
+        self.remove_node(prev_node)
+        return prev_node
+
+    def move_front(self, node):
+        self.remove_node(node)
+        self.add_front(node)
+
+    def display_cache(self):
+        node = self.head
+        ordered_cache = []
+        while node is not None:
+            if node.value is not None:
+                ordered_cache.append(node.value)
+            node = node.next
+        print(f"Latest added value : {ordered_cache[0]}", ordered_cache)
+
+
 class LRUCache:
     def __init__(self, size):
         if size <= 0:
             raise ValueError("Cache size must be positive")
         self.size = size
         self.cache = {}
-        self.head = Node()
-        self.tail = Node()
-        self.head.next = self.tail
-        self.tail.prev = self.head
+        self.ddl = DLinkedList()
 
     def __len__(self):
         return len(self.cache)
-
-    def _add_front(self, node):
-        node.prev = self.head
-        node.next = self.head.next
-        self.head.next.prev = node
-        self.head.next = node
-
-    def _remove_node(self, node):
-        prev_neighbour = node.prev
-        next_neighbour = node.next
-        prev_neighbour.next = next_neighbour
-        next_neighbour.prev = prev_neighbour
-
-    def _remove_tail(self):
-        prev_node = self.tail.prev
-        self._remove_node(prev_node)
-        return prev_node
-
-    def _move_front(self, node):
-        self._remove_node(node)
-        self._add_front(node)
 
     def get(self, key):
         if key not in self.cache:
             return None
         node = self.cache.get(key)
-        self._move_front(node)
+        self.ddl.move_front(node)
         return node.value
 
     def remove_from_cache(self, key):
@@ -53,7 +67,7 @@ class LRUCache:
             return False
 
         node = self.cache.get(key)
-        self._remove_node(node)
+        self.ddl.remove_node(node)
         del self.cache[key]
         return True
 
@@ -61,19 +75,19 @@ class LRUCache:
         if key in self.cache:
             node = self.cache.get(key)
             node.value = value
-            self._move_front(node)
+            self.ddl.move_front(node)
             return
 
         if len(self.cache) >= self.size:
-            tail_node = self._remove_tail()
+            tail_node = self.ddl.remove_tail()
             del self.cache[tail_node.key]
 
         new_node = Node(key, value)
-        self._add_front(new_node)
+        self.ddl.add_front(new_node)
         self.cache[key] = new_node
 
     def display_cache(self):
-        node = self.head
+        node = self.ddl.head
         ordered_cache = []
         while node is not None:
             if node.value is not None:
