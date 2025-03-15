@@ -54,7 +54,7 @@ Caches are small memory units designed to store the most recently accessed data 
 ## Roadmap
 
 - [x] Add Readme.md
-- [ ] Add LRU cache
+- [x] Add LRU cache
 - [ ] Add LFU cache
 - [ ] Add MRU cache
 - [x] Add FIFO cache
