@@ -42,8 +42,8 @@ Caches are small memory units designed to store the most recently accessed data 
 ## Content
 
 1.  [FIFO caching](FIFO.md)
-2.  [LRU caching]()
-3.  [LFU caching]()
+2.  [LRU caching](LRU.md)
+3.  [LFU caching](LFU.md)
 4.  [LIFO caching]()
 5.  [MRU caching]()
 
